@@ -2,7 +2,9 @@ const {
     hello, 
     todos,
     todo,
-    users
+    users,
+    user,
+    me
 } = require('./query');
 
 const {
@@ -18,6 +20,8 @@ module.exports = {
     todos,
     todo,
     users,
+    user,
+    me,
     // mutation
     createTodo,
     updateTodo,
