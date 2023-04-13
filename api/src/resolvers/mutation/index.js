@@ -1,4 +1,4 @@
-const { createTodo, updateTodo, deleteTodo } = require('./Todo');
+const { createTodo, updateTodo, deleteTodo, toggleFavorite } = require('./Todo');
 const { signUp, signIn } = require('./auth');
 
 module.exports = {
@@ -6,5 +6,6 @@ module.exports = {
     updateTodo,
     deleteTodo,
     signUp,
-    signIn
+    signIn,
+    toggleFavorite
 };

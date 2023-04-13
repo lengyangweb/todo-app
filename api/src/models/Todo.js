@@ -8,7 +8,17 @@ const Schema = mongoose.Schema({
     createdBy: {
         type: mongoose.Schema.Types.ObjectId,
         required: true
-    }
+    },
+    favoriteCount: {
+        type: Number,
+        default: 0
+    },
+    favoritedBy: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'User'
+        }
+    ]
 },
 {
     timestamps: true

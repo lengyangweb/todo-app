@@ -16,11 +16,14 @@ module.exports = buildSchema(`
         deleteTodo(id: ID!): Boolean!
         signUp(username: String!, email: String!, password: String!): String!
         signIn(username: String, email: String, password: String!): String!
+        toggleFavorite(id: ID!): Todo!
     }
     type Todo {
         id: ID!
         title: String!
         createdBy: ID!
+        favoriteCount: Int!
+        favoriteBy: [ID!]
     }
     type User {
         id: ID!
@@ -28,5 +31,6 @@ module.exports = buildSchema(`
         email: String!
         avatar: String!
         todos:[Todo!]!
+        favoriates: [Todo!]!
     }
 `);

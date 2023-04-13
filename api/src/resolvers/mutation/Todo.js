@@ -62,5 +62,52 @@ module.exports = {
             console.error(error); // log any errors
             return false;
         }
+    },
+    toggleFavorite: async ({ id }, { models, user }) => {
+        if (!user) {
+            throw new AuthenticationError('You must sign in.');
+        }
+
+        // check user already made it favorite the todo
+        let todoCheck = await models.Todo.findById(id);
+
+        const hasTodo = todoCheck.favoritedBy.indexOf(user.id);
+
+        // if the user exists in the list
+        // pull them from the list and reduce the favoriteCount by 1
+        if (hasTodo >= 0) {
+            return await models.Book.findByIdAndUpdate(
+                id,
+                {
+                    $pull: {
+                        favoritedBy: mongoose.Types.ObjectId(user.id)
+                    },
+                    $inc: {
+                        favoriteCount: -1
+                    }
+                },
+                {
+                    // set new to true to return the updated doc
+                    new: true
+                }
+            )
+        } else {
+            // if the user doesn't exist in the list
+            // add them to the list and increment the favoriteCount by 1
+            return await models.Todo.findByIdAndUpdate(
+                id,
+                {
+                    $push: {
+                        favoritedBy: mongoose.Types.ObjectId(user.id)
+                    },
+                    $inc: {
+                        favoriteCount: 1
+                    }
+                },
+                {
+                    new: true
+                }
+            )
+        }
     }
 }

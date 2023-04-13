@@ -12,7 +12,8 @@ const {
     updateTodo,
     deleteTodo,
     signUp,
-    signIn
+    signIn,
+    toggleFavorite
 } = require('./mutation');
 
 module.exports = {
@@ -27,5 +28,6 @@ module.exports = {
     updateTodo,
     deleteTodo,
     signUp,
-    signIn
+    signIn,
+    toggleFavorite
 }
